@@ -90,3 +90,6 @@ ENV/
 
 # Pycharm project settings
 .idea/
+
+# Database
+*.db
