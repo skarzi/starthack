@@ -12,6 +12,7 @@ class OpenWeatherManFacade:
             params={
                 'APPID': API_KEY,
                 'q': city,
+                'units': 'metric',
             },
         ).json()
         icons_name = [x['icon'] for x in weather_info['weather']]
@@ -24,23 +25,11 @@ class OpenWeatherManFacade:
         }
 
     def _get_icon(self, icons_name):
-        icons = list()
-        for icon_name in icons_name:
-            img = requests.get('http://openweathermap.org/img/w/{name}.png'.format(
-                    name=icon_name,
-                ),
-                stream=True,
-            )
-            with open(ICON_STORE + icon_name + '.png', 'wb') as f:
-                if img.status_code == 200:
-                    for chunk in img:
-                        f.write(chunk)
-            icons.append(ICON_STORE + '{icon_name}.png'.format(
-                icon_name=icon_name,
-            ))
-        return icon_name + '.png'
+        return ['http://openweathermap.org/img/w/{name}.png'.format(
+            name=icon_name,
+        ) for icon_name in icons_name]
 
 
 if __name__ == '__main__':
     owmf = OpenWeatherManFacade()
-    print(owmf.get_weather('Warsaw'))
+    print(owmf.get_weather('Zurich'))
