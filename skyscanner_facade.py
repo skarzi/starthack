@@ -30,26 +30,25 @@ class SkyscannerFacade:
         adults=1,
         **kwargs
     ):
-        """
-        flights = requests.get(
-            API_URL + ("browsequotes/v1.0/{country}/{currency}/{locale}/"
-                        "{originPlace}/{destinationPlace}/{outboundPartialDate}/"
-                        "{inboundPartialDate}").format(
-                    country=self._country,
-                    locale=self._locale,
-                ),
-            params={'apiKey':API_KEY},
-        )
-        """
         from_id = self._get_city_id(from_)
         to_id = self._get_city_id(to_)
-        self._create_session(
+        session_key = self._create_session(
             from_id,
             to_id,
             outbound_date,
             inbound_date,
             adults,
         )
+        flights = requests.get(
+            API_URL + session_key,
+            params={
+                'apiKey': API_KEY,
+                'stops': 0,
+                'pageIndex': 0,
+                'pageSize': 25,
+            }
+        )
+        return flights
 
     def _create_session(
         self,
@@ -65,7 +64,7 @@ class SkyscannerFacade:
             headers={
                 'Content-Type': 'application/x-www-form-urlencoded',
                 # 'X-Forwarded-For': '172.27.1.19',
-                'Accept': 'application/json',
+                # 'Accept': 'application/json',
             },
             data={
                 'cabinclass': self._get_or_default(kwargs, 'cabinclass'),
@@ -89,6 +88,7 @@ class SkyscannerFacade:
         print(creating_result)
         print(creating_result.headers)
         print(creating_result.json())
+        # return session_key
 
     def _get_or_default(self, dict_, key):
         return dict_.get(key, DEFAULTS_SKYSCANNER[key])
@@ -106,9 +106,9 @@ class SkyscannerFacade:
 
     def _get_city_id(self, city):
         print(self._get_autosuggest(city)['Places'][0]['PlaceId'])
-        return self._get_autosuggest(city)['Places'][0]['PlaceId']
+        return self._get_autosuggest(city)['Places'][0]['CityId']
 
 
 if __name__ == '__main__':
     sf = SkyscannerFacade(currency='EUR', locale='en-GB', country='CH')
-    sf.get_flights('Warsaw', 'Zurich', '2017-03-26', '2017-03-28', {'adults': 1})
+    sf.get_flights('Warsaw', 'St Gallen', '2017-03-26', '2017-03-28', adults=1)
