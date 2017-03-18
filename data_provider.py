@@ -120,7 +120,7 @@ class DataProvider:
 
 
 if __name__ == '__main__':
-    dp = DataProvider('en-GB', 'CHF', 'CH', DataProvider.get_suggestions('Warszawa')[1]['code'],
+    dp = DataProvider('en-GB', 'EUR', 'CH', DataProvider.get_suggestions('Warszawa')[1]['code'],
                       (datetime.today() + timedelta(days=2)).date(),
                       (datetime.today() + timedelta(days=7)).date())
-    print(json.dumps(dp.get_propositions(destination=DataProvider.get_suggestions('Zurych')[-1]['code'])))
+    print(dp.get_propositions(destination=DataProvider.get_suggestions('Zurych')[-1]['code']))
