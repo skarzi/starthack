@@ -1,3 +1,4 @@
+import json
 from urllib.parse import urlencode, urljoin
 
 import requests
@@ -6,7 +7,8 @@ from flask import render_template
 from flask import send_from_directory
 from requests.auth import HTTPBasicAuth
 
-# App config
+from yelp import get_categories_tree, get_places
+
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -39,7 +41,8 @@ def home():
     if user is not authenticated redirect to login page, in other case
     render standard template with main form
      """
-    return render_template("index.html", authenticated=("user_token" in session))
+    return render_template("index.html",
+                           authenticated=("user_token" in session))
 
 
 @app.route("/authenticate")
@@ -90,6 +93,17 @@ def proxy_dbapi_request(data):
 @app.route('/static/<file>')
 def serve_static(file):
     return send_from_directory("static", file)
+
+
+@app.route('/categories_places', methods=['GET'])
+def categories():
+    return json.dumps(get_categories_tree())
+
+
+@app.route('/attractions/<city>/<category>', methods=['GET'])
+def attractions(city, category):
+    print(city, category)
+    return json.dumps(get_places(city))
 
 
 if __name__ == '__main__':

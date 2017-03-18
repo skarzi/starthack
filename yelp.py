@@ -1,3 +1,4 @@
+import json
 from copy import deepcopy
 
 import requests
@@ -5,6 +6,8 @@ from requests_oauthlib import OAuth1
 
 from config import yelp_consumer_key, yelp_consumer_secret, yelp_token, \
     yelp_token_secret
+
+root_categories = None
 
 
 def get_categories_tree():
@@ -48,13 +51,39 @@ def del_keys(x):
     return x
 
 
-def get_places(city, category):
+def coords_only(x):
+    return x['location']['coordinate']
+
+
+def get_places(city):
+    global root_categories
+    if not root_categories:
+        root_categories = json.load(open('root_cats.json'))
     auth = OAuth1(yelp_consumer_key, yelp_consumer_secret, yelp_token,
                   yelp_token_secret)
-    r = requests.get(
-        'https://api.yelp.com/v2/search?location={}&category_filter={}'.format(
-            city, category),
-        auth=auth)
-    data = r.json()
 
-    return [del_keys(x) for x in data['businesses']]
+    points = {}
+    for c in root_categories.keys():
+        r = requests.get(
+            'https://api.yelp.com/v2/search?location={}&category_filter={}&radius_filter=5000&limit=40&sort=2'.format(
+                city, c),
+            auth=auth)
+        points[c] = r.json()
+
+    keys2del = []
+    for c in points.keys():
+        try:
+            points[c] = [coords_only(x) for x in points[c]['businesses']]
+        except KeyError:
+            if 'error' in points[c].keys():
+                keys2del.append(c)
+            else:
+                pass
+    for k in keys2del:
+        del points[k]
+
+    return points
+
+
+if __name__ == '__main__':
+    print(get_places('Zurich'))

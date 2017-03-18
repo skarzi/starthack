@@ -4,15 +4,15 @@ from datetime import datetime, timedelta
 
 import requests
 
+from config import skyscanner_token
 from data_provider import DataProvider
-
-API_KEY = 'ma595491219569679758263226220714'
 
 
 class LivePricing:
     def __init__(self, origin, destination, start_date, end_date, adults,
                  market='CH', currency='EUR', locale='en-GB'):
-        data = {'apiKey': API_KEY, 'country': market, 'currency': currency,
+        data = {'apiKey': skyscanner_token, 'country': market,
+                'currency': currency,
                 'locale': locale, 'originplace': origin + '-sky',
                 'destinationplace': destination + '-sky',
                 'outbounddate': start_date, 'inbounddate': end_date,
@@ -23,7 +23,7 @@ class LivePricing:
             time.sleep(5)
             r = requests.post(url, data)
         self.get_url = r.headers[
-                           'Location'] + '?apiKey=' + API_KEY + '&pagesize=1'
+                           'Location'] + '?apiKey=' + skyscanner_token + '&pagesize=1'
 
     def _get_cheapest(self):
         time.sleep(5)
@@ -67,7 +67,6 @@ class LivePricing:
                                                     '%Y-%m-%dT%H:%M:%S').time()
         outbound['arrival_time'] = datetime.strptime(outbound['Arrival'],
                                                      '%Y-%m-%dT%H:%M:%S').time()
-
 
         try:
             inbound['Carriers'] = [carriers_mapping[x] for x in

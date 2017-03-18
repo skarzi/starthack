@@ -8,3 +8,7 @@ yelp_consumer_key = 'jg0J9rGvl-PNYzhcTYqA0A'
 yelp_consumer_secret = '871R9FP9jLh0xO6FxFpkQV3VwCM'
 yelp_token = 'qRONaEJs40boVygJ1QfWjfa-YmKIOqYF'
 yelp_token_secret = 'tQyYwInQtCqyiIRH8cLToWhKX14'
+
+google_token = 'AIzaSyBp2pNs5x7SH0DZ_SgMxdgbxWNAeNCMKSY'
+
+skyscanner_token = 'ma595491219569679758263226220714'
