@@ -6,7 +6,7 @@ API_URL = 'http://api.openweathermap.org/data/2.5/forecast/daily'
 API_KEY = '4c7fd0781b820a77cdf429f35ad92599'
 
 
-class OpenWeatherManFacade:
+class OpenWeatherMapFacade:
     def get_weather(self, city, date):
         one_day = timedelta(days=1)
         weather_infos = requests.get(
@@ -39,6 +39,7 @@ class OpenWeatherManFacade:
 
 
 if __name__ == '__main__':
-    owmf = OpenWeatherManFacade()
+    owmf = OpenWeatherMapFacade()
+
     import datetime
-    print(owmf.get_weather('Zurich', datetime.datetime.today()))
+    print(owmf.get_weather('Zurich', datetime.datetime.today())[0]['date'])
