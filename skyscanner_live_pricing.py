@@ -11,7 +11,7 @@ API_KEY = 'ma595491219569679758263226220714'
 
 class LivePricing:
     def __init__(self, origin, destination, start_date, end_date, adults,
-                 market='CH', currency='CHF', locale='en-GB'):
+                 market='CH', currency='EUR', locale='en-GB'):
         data = {'apiKey': API_KEY, 'country': market, 'currency': currency,
                 'locale': locale, 'originplace': origin + '-sky',
                 'destinationplace': destination + '-sky',
