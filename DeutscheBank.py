@@ -3,9 +3,12 @@ from urllib.parse import urlencode, urljoin
 import requests
 from flask import abort, Flask, session, redirect, request
 from flask import render_template
+from flask import send_from_directory
 from requests.auth import HTTPBasicAuth
 
+# App config
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # api location
 DB_AUTH_URL = "https://simulator-api.db.com/gw/oidc/"
@@ -36,7 +39,7 @@ def home():
     if user is not authenticated redirect to login page, in other case
     render standard template with main form
      """
-    if not "user_token" in session:
+    if False: # not "user_token" in session:
         return redirect("/authenticate")
     return render_template("index.html")
 
@@ -84,6 +87,11 @@ def proxy_dbapi_request(data):
     if response.status_code == 200:
         return response.text
     return response.text
+
+
+@app.route('/static/<file>')
+def serve_static(file):
+    return send_from_directory("static", file)
 
 
 if __name__ == '__main__':

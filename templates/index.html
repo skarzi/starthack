@@ -1,1 +1,85 @@
-Zalogowano!
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+            <form class="main-form">
+                <div class="logo-wrapper text-center">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="logo"
+                         preserveAspectRatio="xMidYMid meet"
+                         viewBox="638 301 252 139">
+                        <g data-item-type="text" data-item="Business"
+                           id="logo__item--business" class="logo__item">
+                            <g class="logo__item__inner"
+                               transform="translate(638.7578125 438.00837431247174) scale(1 1) rotate(0 0 0)">
+                                <text data-part-id="logo__item--business" dy="0"
+                                      dominant-baseline="auto"
+                                      alignment-baseline="auto"
+                                      font-family="Montserrat" font-size="32px"
+                                      fill="#00aadd" letter-spacing="0"
+                                      font-weight="bold" font-style="normal"
+                                      data-font-family="Montserrat"
+                                      data-font-weight="bold"
+                                      data-font-style="normal"
+                                      data-ttf-url="/builder_assets/fontsttf/font-montserrat-bold-normal.ttf"
+                                      data-font-filename="montserrat-bold-normal">
+                                    DBestAssistant
+                                </text>
+                            </g>
+                        </g>
+                        <g data-item-type="image" data-item="Image"
+                           data-logo-item="" id="logo__item--logo_0"
+                           class="logo__item">
+                            <g class="logo__item__inner"
+                               transform="translate(626.2136412672857 215.5) scale(2.7395973031543637 2.7395973031543637) rotate(0 0 0)">
+
+                                <g>
+                                    <path fill="#00aadd"
+                                          d="M63.593,52.013l-3.32-3.229c-0.198-0.321-0.059-0.663,0.352-0.92c0.322-0.202,0.551-0.247,0.907-0.085   l3.232,1.401c1.317,0.583,1.745,0.601,2.436,0.173c0.51-0.316,4.029-3.211,6.535-4.771c0.832-0.516,1.41-1.168,0.826-2.108   c-0.516-0.829-1.663-1.392-1.893-1.758c-0.146-0.231-0.292-0.775-0.474-1.076l-6.459-6.316c-0.229-0.367-0.093-0.612,0.253-0.825   c0.485-0.3,0.795-0.209,1.334,0.092l8.116,4.424c2.318,1.268,1.891-0.444,2.909,1.19c0.182,0.298,0.47,0.601,0.662,0.706   l1.418,0.741c0.702,0.36,1.323-0.027,2.933-1.028c3.08-1.917,7.969-3.75,8.355-3.129c0.27,0.436-1.61,2.79-3.782,4.584   c-0.878,0.74-1.774,1.397-2.412,1.858c-2.073,1.448-2.073,1.448-2.066,2.017l0.006,1.339c-0.006,0.45,0.07,0.627,0.127,0.718   c0.083,0.137,0.311,0.345,0.47,0.6c0.673,1.081-0.545,0.975-0.521,3.006l0.105,9.185c0.012,0.53,0,0.922-0.48,1.224   c-0.392,0.243-0.661,0.22-0.878-0.122c-0.087-0.138-0.199-0.423-0.292-0.776l-1.863-6.687c-0.211-0.797-0.339-1.005-0.427-1.142   c-0.129-0.205-0.497-0.646-0.638-0.878c-0.259-0.41-0.205-1.145-0.738-1.996c-0.855-1.38-1.744-0.859-2.319-0.502   c-1.048,0.623-1.727,1.013-2.4,1.368c-3.08,1.663-4.421,2.179-4.947,2.506c-0.486,0.302-0.832,0.772-0.908,1.874l-0.229,3.683   c-0.047,0.539-0.041,0.756-0.521,1.061c-0.229,0.141-0.48,0.105-0.609-0.105l-1.827-4.729l-0.925-0.508L63.593,52.013   L63.593,52.013z"
+                                          data-part-id="logo__item--logo_0__0"></path>
+                                    <path fill="#00aadd"
+                                          d="M14.847,66.922c2.125,0.924,4.374,1.561,6.657,2.034c2.283,0.445,4.614,0.67,6.951,0.743   c4.672,0.118,9.345-0.541,13.866-1.697c4.497-1.247,8.87-2.986,12.916-5.311c4.047-2.313,7.794-5.168,10.95-8.562   c-1.745,1.523-3.537,2.984-5.451,4.266c-1.885,1.32-3.859,2.512-5.896,3.575c-4.063,2.137-8.355,3.847-12.794,4.994   c-4.421,1.225-9,1.851-13.585,1.915c-2.295,0.024-4.596-0.105-6.874-0.439C19.308,68.146,17.054,67.621,14.847,66.922z"
+                                          data-part-id="logo__item--logo_0__1"></path>
+                                    <path fill="#00aadd"
+                                          d="M6.936,60.205c2.103,1.426,4.438,2.495,6.845,3.338c2.431,0.797,4.937,1.343,7.478,1.646   c5.088,0.612,10.259,0.237,15.265-0.768c5-1.089,9.849-2.825,14.364-5.221c2.248-1.202,4.415-2.561,6.47-4.063   c2.026-1.54,3.971-3.198,5.709-5.042c-1.908,1.669-3.899,3.229-6.013,4.609c-2.097,1.404-4.281,2.663-6.541,3.764   c-4.514,2.202-9.287,3.918-14.205,4.904c-4.907,1.072-9.96,1.423-14.961,0.999C16.351,63.943,11.386,62.659,6.936,60.205z"
+                                          data-part-id="logo__item--logo_0__2"></path>
+                                </g>
+
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="form-group">
+                    <label for="id-city-1">From</label>
+                    <input id="id-city-1" type="text" name="city_from" placeholder="E.g. Zurich"
+                           class="city-field">
+                </div>
+                <div class="form-group">
+                    <label for="id-city-1">To</label>
+                    <input id="id-city-1" type="text" name="city_from" placeholder="E.g. Hamburg"
+                           class="city-field">
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="id-date-1">Departure</label>
+                            <input id="id-date-1" type="text" name="departure" placeholder="E.g. 2017-03-19"
+                                   class="date-field">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="id-date-2">Return</label>
+                            <input id="id-date-2" type="text" name="return" placeholder="E.g. 2017-03-21"
+                                   class="date-field">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block btn-lg" type="submit">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

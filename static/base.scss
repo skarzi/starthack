@@ -1,0 +1,64 @@
+button {
+  box-shadow: 2px 2px 3px 1px rgba(32, 32, 32, 0.6);
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: 0 4px 6px 3px rgba(22, 24, 25, 0.3);
+  }
+
+}
+
+body {
+  background: url("/static/travel2.jpg") no-repeat fixed center center;
+  background-size: cover;
+
+  .background-layer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 0.6;
+    background-color: #110;
+  }
+}
+
+.main-form {
+  margin-top: 15px;
+  background: rgba(2, 2, 2, 0.3);
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: 4px 4px 6px 2px rgba(1, 1, 1, 0.4);
+
+  .logo {
+    margin-bottom: 25px;
+    width: 80%;
+  }
+
+  label {
+    display: block;
+    color: #fff;
+  }
+
+  input {
+    width: 100%;
+    border: 1px #e5e6e7;
+    border-radius: 5px;
+    padding: 10px;
+    line-height: 26px;
+    font-size: 22px;
+    color: #444;
+    &::-moz-placeholder, &::-webkit-input-placeholder, &:-ms-input-placeholder {
+      color: #777;
+    }
+  }
+
+  .btn {
+    margin-top: 15px;
+    background-color: #00aadd;
+    border: none;
+
+    &:hover {
+      background-color: #00bfef;
+    }
+  }
+}
