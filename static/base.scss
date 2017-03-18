@@ -1,10 +1,9 @@
-button {
+button:not(:disabled), .button:not(:disabled) {
   box-shadow: 2px 2px 3px 1px rgba(32, 32, 32, 0.6);
   transition: box-shadow 0.2s;
-  &:hover {
+  &:enabled:hover {
     box-shadow: 0 4px 6px 3px rgba(22, 24, 25, 0.3);
   }
-
 }
 
 body {
@@ -19,16 +18,35 @@ body {
     top: 0;
     opacity: 0.6;
     background-color: #110;
+    z-index: -1;
+  }
+
+  .container {
+    z-index: 10;
+  }
+}
+
+.content-wrapper {
+  margin-top: 15px;
+  background: rgba(2, 2, 2, 0.3);
+  padding: 20px;
+  border-radius: 3px;
+  box-shadow: 4px 4px 6px 2px rgba(1, 1, 1, 0.4);
+  min-height: 400px;
+
+  h2, a, a:hover {
+    color: #fff;
+  }
+  a {
+    text-decoration: underline;
+    transition: all 0.2s;
+  }
+  a:hover {
+    color: #ddd;
   }
 }
 
 .main-form {
-  margin-top: 15px;
-  background: rgba(2, 2, 2, 0.3);
-  padding: 15px;
-  border-radius: 3px;
-  box-shadow: 4px 4px 6px 2px rgba(1, 1, 1, 0.4);
-
   .logo {
     margin-bottom: 25px;
     width: 80%;
@@ -54,11 +72,32 @@ body {
 
   .btn {
     margin-top: 15px;
-    background-color: #00aadd;
+    background-color: #0066aa;
     border: none;
-
-    &:hover {
+    &:enabled:hover {
       background-color: #00bfef;
     }
+    &:disabled:hover {
+      background-color: #0066aa;
+    }
+
+    & + label {
+      display: block;
+      margin-top: 5px;
+    }
   }
+}
+
+.auth-logo {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.db-auth-button {
+  margin-top: 30px;
+  display: inline-block;
+  background: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  width: 300px;
 }

@@ -39,9 +39,7 @@ def home():
     if user is not authenticated redirect to login page, in other case
     render standard template with main form
      """
-    if False: # not "user_token" in session:
-        return redirect("/authenticate")
-    return render_template("index.html")
+    return render_template("index.html", authenticated=("user_token" in session))
 
 
 @app.route("/authenticate")
