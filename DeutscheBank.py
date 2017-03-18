@@ -1,13 +1,31 @@
-from urllib.parse import urlencode, urljoin
+from datetime import datetime
+
+from urllib.parse import (
+    urlencode,
+    urljoin,
+)
 
 import requests
-from flask import abort, Flask, session, redirect, request
-from flask import render_template
-from flask import send_from_directory
+
+from flask import (
+    abort,
+    Flask,
+    redirect,
+    render_template,
+    request,
+    send_from_directory,
+    session,
+    url_for,
+)
 from requests.auth import HTTPBasicAuth
+
+from forms import FlightForm
+from uber_facade import UberFacade
+from open_weather_map_facade import OpenWeatherMapFacade
 
 # App config
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # api location
@@ -39,7 +57,16 @@ def home():
     if user is not authenticated redirect to login page, in other case
     render standard template with main form
      """
-    return render_template("index.html", authenticated=("user_token" in session))
+    form = FlightForm()
+    if form.validate_on_submit():
+        session['return_'] = form.return_.data
+        session['departure_'] = form.departure_.data
+        session['from_'] = form.from_.data
+        session['to_'] = form.to_.data
+        return redirect(url_for('widgets'))
+    if False: # not "user_token" in session:
+        return redirect("/authenticate")
+    return render_template("index.html", form=form)
 
 
 @app.route("/authenticate")
@@ -90,6 +117,29 @@ def proxy_dbapi_request(data):
 @app.route('/static/<file>')
 def serve_static(file):
     return send_from_directory("static", file)
+
+
+@app.route('/widgets')
+def widgets():
+    return_ = session['return_']
+    departure_ = session['departure_']
+    from_ = session['from_']
+    to_ = session['to_']
+
+    return_dt = datetime.strptime(return_, "%d %b, %Y")
+    departure_dt = datetime.strptime(departure_, "%d %b, %Y")
+
+    weather_service = OpenWeatherMapFacade()
+    weather_data = weather_service.get_weather(to_, departure_dt)
+
+    uber_service = UberFacade()
+    uber = uber_service.get_rides_from_to(from_, to_)
+
+    return render_template(
+        'widgets.html',
+        uber=uber,
+        weather_service=weather_service,
+    )
 
 
 if __name__ == '__main__':

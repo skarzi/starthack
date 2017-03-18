@@ -3,6 +3,7 @@
     <div class="row">
         <div class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
             <form class="main-form content-wrapper">
+                {{ form.hidden_tag() }}
                 <div class="logo-wrapper text-center">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="logo"
                          preserveAspectRatio="xMidYMid meet"
@@ -50,27 +51,39 @@
                 </div>
                 <div class="form-group">
                     <label for="id-city-1">From</label>
+                    {{ form.from_(id="id-city-1", class="city-field", placeholder="E.g. Zurich") }}
+                    <!--
                     <input id="id-city-1" type="text" name="city_from" placeholder="E.g. Zurich"
                            class="city-field">
+                    -->
                 </div>
                 <div class="form-group">
-                    <label for="id-city-1">To</label>
+                    <label for="id-city-2">To</label>
+                    {{ form.to_(id="id-city-2", class="city-field", placeholder="E.g. Munich") }}
+                    <!--
                     <input id="id-city-1" type="text" name="city_from" placeholder="E.g. Hamburg"
                            class="city-field">
+                    -->
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="id-date-1">Departure</label>
+                            {{ form.departure_(id="id-data-1", class="date-field", placeholder="E.g. 2017-03-19") }}
+                    <!--
                             <input id="id-date-1" type="text" name="departure" placeholder="E.g. 2017-03-19"
                                    class="date-field">
+                    -->
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
                             <label for="id-date-2">Return</label>
+                            {{ form.return_(id="id-date-2", class="date-field", placeholder="E.g. 2017-03-21") }}
+                    <!--
                             <input id="id-date-2" type="text" name="return" placeholder="E.g. 2017-03-21"
                                    class="date-field">
+                    -->
                         </div>
                     </div>
                 </div>

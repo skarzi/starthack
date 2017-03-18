@@ -1,0 +1,8 @@
+<div class="row weather-widget">
+  {% for wd in weather_data %}
+    <div class="row weather-record">
+      <div class="weather-date">{{wd['date']}}</div>
+      <img class="weather-logo" src="{{wd['logo'][0]}}">
+    </div>
+  {% endfor %}
+</div>
