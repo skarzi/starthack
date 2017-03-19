@@ -1,15 +1,32 @@
 {% if places %}
-    <section class="places">
-        <div class="container">
-            <h1 class="section-header">Convenient Accomodation</h1>
+    <section class="accommodation">
+        <div class="container text-center">
+            <h1 class="section-header">Recommended Accommodation</h1>
             <div class="section-logo"></div>
-            {% for place in places %}
-                <div class="place-item">
-                    <h3>{{ place.listing.name }}</h3>
-                    Address: {{ place.listing.public_address }}
-                    Price: {{ place.pricing_quote.rate }}
-                </div>
-            {% endfor %}
+            <div class="accommodation-widget flex-widget">
+                {% for place in places %}
+                    {% if accommodation_type == "airbnb" %}
+                        {# AIRBNB #}
+                        <div class="place-item">
+                            <img src="{{ place.listing.picture_url }}"
+                                 class="place-thumb">
+                            <hr>
+                            <h3>
+                                <a target="_blank" href="http://airbnb.com/rooms/{{ place.listing.id }}">{{ place.listing.name }}</a>
+                            </h3>
+                            <hr>
+                            <p class="price">
+                                {{ place.pricing_quote.price.total.amount }}&euro;<br>
+                                <span class="rate">
+                                        ({{ place.pricing_quote.rate.amount }}&euro; {{ place.pricing_quote.rate_type }})
+                                </span>
+                            </p>
+                        </div>
+                    {% else %}
+                        {# HOTEL #}
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </section>
 {% endif %}
