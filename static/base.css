@@ -74,4 +74,70 @@ body {
   padding: 25px;
   width: 300px; }
 
+/* sections */
+section {
+  font-family: 'Montserrat';
+  height: 100vh;
+  padding-top: 30px;
+  text-align: center; }
+  section .section-header {
+    text-transform: uppercase;
+    font-weight: bold; }
+  section .section-logo {
+    margin: 25px auto;
+    display: inline-block;
+    width: 400px;
+    height: 200px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat; }
+  section.weather {
+    color: #fff;
+    background-color: #5089da; }
+    section.weather .section-logo {
+      background-image: url("/static/weather-set.png"); }
+  section.flights {
+    color: #444;
+    background-color: #fff; }
+    section.flights .section-header {
+      margin-top: 5px; }
+    section.flights .section-logo {
+      background-image: url("/static/plane-set.png");
+      margin-top: -20px;
+      margin-bottom: -25px; }
+
+.flex-widget {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+
+.weather-widget .item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  color: #333;
+  margin: 25px;
+  box-shadow: 2px 0 4px 0 rgba(32, 32, 32, 0.4);
+  min-width: 130px; }
+.weather-widget .weather-date {
+  font-size: 26px; }
+.weather-widget .weather-temperature {
+  font-size: 20px;
+  margin-top: 10px; }
+
+.flight-item .item {
+  border: 3px solid #444;
+  padding: 15px 30px; }
+.flight-item h3 {
+  margin-top: 5px; }
+.flight-item .flight-price {
+  margin-top: 10px; }
+  .flight-item .flight-price a, .flight-item .flight-price a:hover {
+    color: inherit;
+    font-size: 23px; }
+  .flight-item .flight-price a:hover {
+    text-decoration: underline; }
+
 /*# sourceMappingURL=base.css.map */

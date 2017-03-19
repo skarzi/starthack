@@ -1,0 +1,40 @@
+{% if flights %}
+    <section class="flights">
+        <div class="container">
+            <h1 class="section-header">Recommended Flights</h1>
+            <div class="section-logo"></div>
+            <div class="flights-widget flex-widget">
+                {% for flight in flights %}
+                    <div class="flight-item text-center">
+                        <div class="item">
+                            <div class="item-section">
+                                <h3>Departure</h3>
+                                <p class="date">{{ flight['InboundDetails']['date'].strftime("%d %B") }}</p>
+                                <p class="time">{{ flight['InboundDetails']['time'].strftime("%H:%M") }}</p>
+                                <div class="carrier">
+                                    <img class="carrier-logo"
+                                         src="{{ flight['InboundDetails']['Carriers'][0][1] }}">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="item-section">
+                                <h3>Return</h3>
+                                <p class="date">{{ flight['OutboundDetails']['date'].strftime("%d %B") }}</p>
+                                <p class="time">{{ flight['OutboundDetails']['time'].strftime("%H:%M") }}</p>
+                                <div class="carrier">
+                                    <img class="carrier-logo"
+                                         src="{{ flight['OutboundDetails']['Carriers'][0][1] }}">
+                                </div>
+                            </div>
+                        </div>
+                        <p class="flight-price">
+                            <a target="_blank" href="{{ flight["PricingOptions"][0]["DeeplinkUrl"] }}">
+                                Buy ({{ flight.PricingOptions.0.Price }}&euro;)
+                            </a>
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endif %}
