@@ -1,6 +1,5 @@
 import requests
 
-
 API_URL = 'http://partners.api.skyscanner.net/apiservices/'
 API_KEY = 'pw948929450599841224927489979782'
 DEFAULTS_SKYSCANNER = {
@@ -22,13 +21,13 @@ class SkyscannerFacade:
         self._locale = locale
 
     def get_flights(
-        self,
-        from_,
-        to_,
-        outbound_date,
-        inbound_date,
-        adults=1,
-        **kwargs
+            self,
+            from_,
+            to_,
+            outbound_date,
+            inbound_date,
+            adults=1,
+            **kwargs
     ):
         from_id = self._get_city_id(from_)
         to_id = self._get_city_id(to_)
@@ -51,13 +50,13 @@ class SkyscannerFacade:
         return flights
 
     def _create_session(
-        self,
-        from_,
-        to_,
-        outbound_date,
-        inbound_date,
-        adults,
-        **kwargs
+            self,
+            from_,
+            to_,
+            outbound_date,
+            inbound_date,
+            adults,
+            **kwargs
     ):
         creating_result = requests.post(
             API_URL + 'pricing/v1.0',

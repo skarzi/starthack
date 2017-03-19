@@ -21,7 +21,7 @@ from TransactionHistory import TransactionHistory
 from airbnb import AirBNBService
 from data_provider import DataProvider
 from forms import FlightForm
-from hotels import get_city_hotels
+from hotels import get_hotels
 from open_weather_map_facade import OpenWeatherMapFacade
 from skyscanner_live_pricing import LivePricing
 from yelp import get_categories_tree, get_places
@@ -169,7 +169,7 @@ def results():
             places = AirBNBService().search(
                 to_city, departure_dt, return_dt, items_per_grid=5)
         else:
-            places = get_city_hotels(to_city, departure_dt, return_dt)
+            places = get_hotels(to_city, departure_dt, return_dt)
 
         return render_template(
             'widgets.html', weather_data=weather_data, flights=flights,
@@ -182,7 +182,8 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Development Server Help')
-    parser.add_argument("-d", "--debug", action="store_true", dest="debug_mode",
+    parser.add_argument("-d", "--debug", action="store_true",
+                        dest="debug_mode",
                         help="run in debug mode (for use with PyCharm)",
                         default=False)
     parser.add_argument("-p", "--port", dest="port",

@@ -12,7 +12,8 @@
                                  class="place-thumb">
                             <hr>
                             <h3>
-                                <a target="_blank" href="http://airbnb.com/rooms/{{ place.listing.id }}">{{ place.listing.name }}</a>
+                                <a target="_blank"
+                                   href="http://airbnb.com/rooms/{{ place.listing.id }}">{{ place.listing.name }}</a>
                             </h3>
                             <hr>
                             <p class="price">
@@ -23,7 +24,22 @@
                             </p>
                         </div>
                     {% else %}
-                        {# HOTEL #}
+                        <div class="place-item">
+                            <img src="{{ place.image_urls[0] }}"
+                                 class="place-thumb">
+                            <hr>
+                            <h3>
+                                <a target="_blank"
+                                   href="#">{{ place.name }} {{ ' *' * place.star_rating }}</a>
+                            </h3>
+                            <hr>
+                            <p class="price">
+                                {{ place.price_total }}&euro;<br>
+                                <span class="rate">
+                                    User's opinions: {{ place.popularity_desc }}
+                                </span>
+                            </p>
+                        </div>
                     {% endif %}
                 {% endfor %}
             </div>
