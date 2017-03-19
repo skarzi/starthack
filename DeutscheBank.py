@@ -1,12 +1,9 @@
 import json
-<< << << < HEAD
-== == == =
 from datetime import datetime
 from urllib.parse import (
     urlencode,
     urljoin,
 )
->> >> >> > feature / widgets
 
 import requests
 from flask import (
@@ -20,15 +17,12 @@ from flask import (
 )
 from requests.auth import HTTPBasicAuth
 
-<< << << < HEAD
-from yelp import get_categories_tree, get_places
-== == == =
 from TransactionHistory import TransactionHistory
 from data_provider import DataProvider
 from forms import FlightForm
 from open_weather_map_facade import OpenWeatherMapFacade
 from skyscanner_live_pricing import LivePricing
->> >> >> > feature / widgets
+from yelp import get_categories_tree, get_places
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -63,14 +57,9 @@ def home():
     if user is not authenticated redirect to login page, in other case
     render standard template with main form
      """
-
-<< << << < HEAD
-return render_template("index.html",
-       == == ===
-form = FlightForm()
-return render_template("index.html", form=form,
-       >> >> >> > feature / widgets
-authenticated = ("user_token" in session))
+    form = FlightForm()
+    return render_template("index.html", form=form,
+                           authenticated=("user_token" in session))
 
 
 @app.route("/authenticate")
