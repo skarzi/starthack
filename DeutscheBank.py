@@ -25,6 +25,7 @@ from hotels import get_city_hotels
 from open_weather_map_facade import OpenWeatherMapFacade
 from skyscanner_live_pricing import LivePricing
 from yelp import get_categories_tree, get_places
+from utils import gather_city_and_code
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -128,13 +129,13 @@ def attractions(city, category):
 def results():
     form = FlightForm()
     if form.validate_on_submit():
-        from_ = form.from_.data
-        to_ = form.to_.data
+        from_city, from_code = gather_city_and_code(form.from_.data)
+        to_city, to_code = gather_city_and_code(form.to_.data)
         departure_dt = datetime.strptime(form.departure_.data,
                                          "%d %B, %Y").date()
         return_dt = datetime.strptime(form.return_.data, "%d %B, %Y").date()
         print(
-            "New request: {from_} -> {to_} / {departure_dt} to {return_dt}".format(
+            "New request: {from_city} -> {to_city} / {departure_dt} to {return_dt}".format(
                 **locals())
         )
         transaction_history = TransactionHistory(
@@ -143,13 +144,15 @@ def results():
 
         # weather
         weather_data = OpenWeatherMapFacade().get_weather(
-            to_, departure_dt, return_dt)
+            to_city, departure_dt, return_dt)
 
         # flights
         try:
             flights = LivePricing(
-                DataProvider.get_suggestions(from_)[0]['code'].split('-')[0],
-                DataProvider.get_suggestions(to_)[0]['code'].split('-')[0],
+                from_code,
+                # DataProvider.get_suggestions(from_)[0]['code'].split('-')[0],
+                to_code,
+                # DataProvider.get_suggestions(to_)[0]['code'].split('-')[0],
                 departure_dt, return_dt, 1
             ).find_flights()
         except Exception:
@@ -164,9 +167,9 @@ def results():
             ("hotel", "airbnb"))[0]
         if accommodation_type == "airbnb":
             places = AirBNBService().search(
-                to_, departure_dt, return_dt, items_per_grid=5)
+                to_city, departure_dt, return_dt, items_per_grid=5)
         else:
-            places = get_city_hotels(to_, departure_dt, return_dt)
+            places = get_city_hotels(to_city, departure_dt, return_dt)
 
         return render_template(
             'widgets.html', weather_data=weather_data, flights=flights,
