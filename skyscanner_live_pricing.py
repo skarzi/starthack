@@ -68,7 +68,6 @@ class LivePricing:
         outbound['arrival_time'] = datetime.strptime(outbound['Arrival'],
                                                      '%Y-%m-%dT%H:%M:%S').time()
 
-
         try:
             inbound['Carriers'] = [carriers_mapping[x] for x in
                                    inbound['Carriers']]
@@ -119,9 +118,9 @@ if __name__ == '__main__':
     inbound = (datetime.today() + timedelta(days=7)).date()
 
     cheapest = LivePricing(
-        DataProvider.get_suggestions('Warszawa')[1]['code'].split('-')[0],
-        DataProvider.get_suggestions('Zurych')[-1]['code'].split('-')[0],
+        DataProvider.get_suggestions('Zurich')[0]['code'].split('-')[0],
+        DataProvider.get_suggestions('Hamburg')[0]['code'].split('-')[0],
         outbound,
         inbound,
         1).find_flights()
-    print(cheapest)
+    print(len(cheapest))

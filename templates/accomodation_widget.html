@@ -1,0 +1,15 @@
+{% if places %}
+    <section class="places">
+        <div class="container">
+            <h1 class="section-header">Convenient Accomodation</h1>
+            <div class="section-logo"></div>
+            {% for place in places %}
+                <div class="place-item">
+                    <h3>{{ place.listing.name }}</h3>
+                    Address: {{ place.listing.public_address }}
+                    Price: {{ place.pricing_quote.rate }}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}

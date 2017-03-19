@@ -1,8 +1,17 @@
-<div class="row weather-widget">
-  {% for wd in weather_data %}
-    <div class="row weather-record">
-      <div class="weather-date">{{wd['date']}}</div>
-      <img class="weather-logo" src="{{wd['logo'][0]}}">
-    </div>
-  {% endfor %}
-</div>
+{% if weather_data %}
+    <section class="weather">
+        <div class="container text-center">
+            <h1 class="section-header">Weather Conditions</h1>
+            <div class="section-logo"></div>
+            <div class="weather-widget flex-widget">
+                {% for wd in weather_data %}
+                    <div class="item">
+                        <div class="weather-date">{{ wd['date'] }}</div>
+                        <img class="weather-icon" src="{{ wd['icons'][0] }}">
+                        <p class="weather-temperature">{{ wd['temp']['day'] }}&deg;C</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endif %}
