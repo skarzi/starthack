@@ -18,8 +18,10 @@ from flask import (
 from requests.auth import HTTPBasicAuth
 
 from TransactionHistory import TransactionHistory
+from airbnb import AirBNBService
 from data_provider import DataProvider
 from forms import FlightForm
+from hotels import get_city_hotels
 from open_weather_map_facade import OpenWeatherMapFacade
 from skyscanner_live_pricing import LivePricing
 from yelp import get_categories_tree, get_places
@@ -157,13 +159,18 @@ def results():
                 flights, lambda x: x["InboundDetails"]["Carriers"][0][0])
             flights = flights[:5]
 
-        # # accomodation
-        # places = AirBNBService().search(
-        #     to_, departure_dt, return_dt, items_per_grid=6)
+        # accomodation
+        accommodation_type = transaction_history.sort_recommendations(
+            ("hotel", "airbnb"))[0]
+        if accommodation_type == "airbnb":
+            places = AirBNBService().search(
+                to_, departure_dt, return_dt, items_per_grid=5)
+        else:
+            places = get_city_hotels(to_, departure_dt, return_dt)
 
         return render_template(
             'widgets.html', weather_data=weather_data, flights=flights,
-            places=[]
+            places=places, accommodation_type=accommodation_type
         )
     abort(400)
 

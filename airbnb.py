@@ -58,7 +58,7 @@ if __name__ == "__main__":
     from datetime import date
 
     api = AirBNBService()
-    data = api.search("Zurich", date(2017, 3, 20), date(2017, 3, 22))
+    data = api.search("Zurich", date(2017, 3, 20), date(2017, 3, 24))
     print(
         """
         Sample place:
@@ -67,3 +67,5 @@ if __name__ == "__main__":
         Cost: {pricing_quote[rate]} ({pricing_quote[rate_type]})
         """.format(**data[0])
     )
+    from pprint import pprint
+    pprint(data[0])

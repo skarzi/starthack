@@ -5,11 +5,14 @@ class TransactionHistory:
         """
         self.data = data
 
-    def sort_recommendations(self, items, key_extractor):
+    def sort_recommendations(self, items, key_extractor=None):
         """ sort items by occurences in financial history """
 
         def rate_item(item):
-            key = key_extractor(item)
+            if key_extractor:
+                key = key_extractor(item)
+            else:
+                key = item
             value = sum(
                 [key.lower() in record["counterPartyName"].lower()
                  for record in self.data]

@@ -79,7 +79,8 @@ section {
   font-family: 'Montserrat';
   height: 100vh;
   padding-top: 30px;
-  text-align: center; }
+  text-align: center;
+  border-bottom: 2px solid #555; }
   section .section-header {
     text-transform: uppercase;
     font-weight: bold; }
@@ -105,6 +106,15 @@ section {
       background-image: url("/static/plane-set.png");
       margin-top: -20px;
       margin-bottom: -25px; }
+  section.accommodation {
+    color: #ee6f00;
+    background-color: #fff; }
+    section.accommodation .section-header {
+      margin-top: 5px; }
+    section.accommodation .section-logo {
+      background-image: url("/static/accommodation-set.png");
+      width: 200px;
+      height: 100px; }
 
 .flex-widget {
   margin-top: 30px;
@@ -139,5 +149,29 @@ section {
     font-size: 23px; }
   .flight-item .flight-price a:hover {
     text-decoration: underline; }
+
+.accommodation-widget {
+  margin-top: 10px; }
+
+.place-item {
+  width: 200px;
+  border: 3px solid #ee6f00;
+  padding: 15px 15px; }
+  .place-item h3, .place-item h3 a, .place-item h3 a:hover {
+    font-size: 18px;
+    line-height: 20px;
+    margin-top: 5px;
+    height: 80px; }
+  .place-item .place-thumb {
+    max-width: 100%;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin: 0 auto; }
+  .place-item .price {
+    margin-top: 10px;
+    font-size: 24px; }
+    .place-item .price .rate {
+      font-size: 16px; }
 
 /*# sourceMappingURL=base.css.map */

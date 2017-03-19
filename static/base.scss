@@ -108,6 +108,7 @@ section {
   height: 100vh;
   padding-top: 30px;
   text-align: center;
+  border-bottom: 2px solid #555;
 
   .section-header {
     text-transform: uppercase;
@@ -145,6 +146,21 @@ section {
       background-image: url("/static/plane-set.png");
       margin-top: -20px;
       margin-bottom: -25px;
+    }
+  }
+
+  &.accommodation {
+    color: #ee6f00;
+    background-color: #fff;
+
+    .section-header {
+      margin-top: 5px;
+    }
+
+    .section-logo {
+      background-image: url("/static/accommodation-set.png");
+      width: 200px;
+      height: 100px;
     }
   }
 }
@@ -258,3 +274,38 @@ section {
 .ui-helper-hidden-accessible {
   display: none;
 }
+
+.accommodation-widget {
+  margin-top: 10px;
+}
+
+.place-item {
+  width: 200px;
+  border: 3px solid #ee6f00;
+  padding: 15px 15px;
+
+  h3, h3 a, h3 a:hover {
+    font-size: 18px;
+    line-height: 20px;
+    margin-top: 5px;
+    height: 80px;
+  }
+
+  .place-thumb {
+    max-width: 100%;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+
+  .price {
+    margin-top: 10px;
+    font-size: 24px;
+
+    .rate {
+      font-size: 16px;
+    }
+  }
+}
+>>>>>>> master
